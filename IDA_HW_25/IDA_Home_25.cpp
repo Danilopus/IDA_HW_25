@@ -44,10 +44,10 @@ void Finding_matches_in_string()
 {
 	std::string Original_string = { "Hello world! Please come and see what I can!" };
 	std::cout << "Original string: \"" << Original_string << "\"";
-	std::cout << "\n\n"<<"Enter a symbol to search ammount of coincidences\n -> ";
+	std::cout << "\n\n"<<"Enter a symbol to search ammount of matches\n -> ";
 	std::string str_for_search;
 	std::getline(std::cin, str_for_search);	
-	std::cout << "\n" << "Final_string: " << Finding_matches_in_string(Original_string, str_for_search);
+	std::cout << "\n" << "Final string: " << Finding_matches_in_string(Original_string, str_for_search);
 }
 
 //Task 2
@@ -83,8 +83,7 @@ int Punctuation_marks_counter(std::string Frase_String)
 	for (int i = 0; i < Frase_String.length(); i++)
 	{
 		std::cout << char(Frase_String[i]);
-	 	std::cout << int(char(Frase_String[i]));
-		//if (char(Frase_String[i])=='.'|| Frase_String[i] == ',' || Frase_String[i] == '-' || Frase_String[i] == '!' || Frase_String[i] == '?' || Frase_String[i] == '”' || )
+	 	//std::cout << int(char(Frase_String[i]));
 		if ((char(Frase_String[i]) > 31 && char(Frase_String[i]) < 48) || (char(Frase_String[i]) > 57 && char(Frase_String[i]) < 65) || char(Frase_String[i]) > 90 && char(Frase_String[i]) < 97)
 		Punctuation_marks_counter++;
 	}
@@ -92,9 +91,27 @@ int Punctuation_marks_counter(std::string Frase_String)
 }
 void Punctuation_marks_counter()
 {
-	std::string Frase_String = { "“First, you’ve gotta know — not fear, know — that someday, you’re gonna die.” – Tyler Durden" };
-//	std::cout << "Frase = " << Frase_String;
+	std::string Frase_String = { "“First, you’ve gotta know — not fear, know — that someday, you’re gonna die.” – Tyler Durden, Fight Club" };
 	std::cout <<"\n\nPunctuation marks quantity = " << Punctuation_marks_counter(Frase_String);
+}
+
+//Task 4
+std::string String_Rfind(std::string Original_str, char symbol)
+{
+	int Last_Index = Original_str.rfind(symbol);
+	if (Last_Index == -1) return "";
+	return  Original_str.substr(Last_Index);
+}
+void String_Rfind()
+{
+	std::string Original_str = { "Some people give and forgive and some people get and forget…"};
+	char symbol;
+	std::cout << "Original string:\n" << Original_str;
+	std::cout << "\n\nEnter a symbol to search\n";
+	std::string CIN_str;
+	std::getline(std::cin, CIN_str);
+	symbol = CIN_str[0];
+	std::cout << "Result string:\n" << String_Rfind(Original_str, symbol);
 }
 
 // MAIN ------- MAIN ------- MAIN ------- MAIN ------- MAIN --------
@@ -103,10 +120,10 @@ int main()
 	setlocale(LC_CTYPE, "Russian");
 	system("mode con cols=110 lines=40"); // ??? текст основного меню не входит в окно консоли по умолчанию. При небольшом увеличении окна (lines < 85) пропадает полоса прокрутки, что не здорово. Как ee оставить и не делать (lines > 85)?
 	std::string Name_of_Work = { "Home Work 25: Strings" };
-	std::string Menu_Element_1 = { "Finding coincidences in string" };
+	std::string Menu_Element_1 = { "Finding matches in string" };
 	std::string Menu_Element_2 = { "Palindrome investigation" };
 	std::string Menu_Element_3 = { "Punctuation marks counter" };
-	//std::string Menu_Element_4 = { "XXX" };
+	std::string Menu_Element_4 = { "String Rfind and return" };
 
 	do {		
 		system("cls");
@@ -114,7 +131,7 @@ int main()
 		std::cout << "\n 1. " << Menu_Element_1;
 		std::cout << "\n 2. " << Menu_Element_2;
 		std::cout << "\n 3. " << Menu_Element_3;
-		//std::cout << "\n 4. " << Menu_Element_4;
+		std::cout << "\n 4. " << Menu_Element_4;
 		std::cout << "\n\n 0. Exit\n";
 		int choice = 0;
 		std::cout << "\nYour choice: ";
@@ -125,7 +142,7 @@ int main()
 		else if (choice == 1) Finding_matches_in_string();
 		else if (choice == 2) Palindrome_investigation();
 		else if (choice == 3) Punctuation_marks_counter();
-		//else if (choice == 4) Search_First_Ordinary_in_Array_demo();
+		else if (choice == 4) String_Rfind();
 			
 		else { std::cout << "\nSuch choice does not exist yet\n"; Sleep(1000); }
 		std::cout << "\n\n";
