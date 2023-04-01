@@ -29,6 +29,11 @@ std::string Finding_matches_in_string(std::string Original, std::string str_Sear
 		std::cout << "\n" << "No matches found";
 		return "";
 	}
+	else if (str_Search == "")
+	{
+		std::cout << "\n" << "Searching with empty char";
+		return "";
+	}
 	else
 	{
 		while (offset != final_offset)
@@ -84,7 +89,7 @@ int Punctuation_marks_counter(std::string Frase_String)
 	{
 		std::cout << char(Frase_String[i]);
 	 	//std::cout << int(char(Frase_String[i]));
-		if ((char(Frase_String[i]) > 31 && char(Frase_String[i]) < 48) || (char(Frase_String[i]) > 57 && char(Frase_String[i]) < 65) || char(Frase_String[i]) > 90 && char(Frase_String[i]) < 97)
+		if ((char(Frase_String[i]) > 31 && char(Frase_String[i]) < 48) || (char(Frase_String[i]) > 57 && char(Frase_String[i]) < 65) || char(Frase_String[i]) > 90 && char(Frase_String[i]) < 97 || char(Frase_String[i])<0)
 		Punctuation_marks_counter++;
 	}
 	return Punctuation_marks_counter;
@@ -105,6 +110,8 @@ std::string String_Rfind(std::string Original_str, char symbol)
 void String_Rfind()
 {
 	std::string Original_str = { "Some people give and forgive and some people get and forget…"};
+	//std::string Original_str = { "“First, you’ve gotta know — not fear, know — that someday, you’re gonna die.” – Tyler Durden, Fight Club" };
+
 	char symbol;
 	std::cout << "Original string:\n" << Original_str;
 	std::cout << "\n\nEnter a symbol to search\n";
